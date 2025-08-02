@@ -1,4 +1,4 @@
---// Light Obfuscated Xtrf Pet GUI
+--// Light Obfuscated Xtrf Pet GUI with Loadstring
 local g = game
 local p = g:GetService("Players").LocalPlayer
 local cg = g:GetService("CoreGui")
@@ -96,15 +96,8 @@ spawnSeed.TextColor3 = Color3.new(1,1,1)
 spawnSeed.Font = Enum.Font.Gotham
 spawnSeed.TextScaled = true
 
--- Dummy Spawner
-local Spawner = {
-    SpawnPet = function(name, kg, age)
-        warn("SpawnPet:", name, kg, age)
-    end,
-    Spin = function(seed)
-        warn("Spin:", seed)
-    end
-}
+-- Load external pet spawner
+local Spawner = loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.lua"))()
 
 -- Pet Tab
 b1.MouseButton1Click:Connect(function()
@@ -136,7 +129,7 @@ sb.MouseButton1Click:Connect(function()
 	end
 end)
 
--- Seed Spin
+-- Seed Spawn
 spawnSeed.MouseButton1Click:Connect(function()
 	local seed = sTb.Text
 	if seed ~= "" then
